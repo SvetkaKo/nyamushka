@@ -1,0 +1,243 @@
+$color-black: #000000;
+$color-white: #ffffff;
+$color-card: #f2f2f2;
+
+$color-active: #1698d9;
+$color-clicked: #e52e7a;
+$color-disabled: #b3b3b3;
+
+$color-text-secondary: #666666;
+$color-text-disabled: #ffff66;
+$color-link: #1698d9;
+
+$font-header: 'Exo 2', sans-serif;
+$font-main: 'Trebuchet MS', sans-serif;
+
+$bp-largest: 75em; // 1200px
+$bp-large: 68.75em; // 1100px
+$bp-medium: 56.25em; // 900px
+$bp-small: 37.5em; // 600px
+$bp-smallest: 25em; // 400px
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%; // 1 rem = 10px
+}
+
+body {
+  font-family: $font-main;
+  font-weight: 400;
+  line-height: 1.6;
+  background-color: $color-black;
+  background: linear-gradient(rgba($color-black, 0.5), rgba($color-black, 0), rgba($color-black, 0.5)), url(../img/Pattern.png);
+  background-size: cover;
+  background-position: top;
+  height: 100vh;
+}
+
+.container {
+  height: 100vh;
+}
+
+.header {
+  text-align: center;
+}
+
+.header__h1 {
+  font-size: 3.6rem;
+  font-family: $font-header;
+  font-weight: 300;
+  color: $color-white;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.card {
+  width: 32rem;
+  height: 48rem;
+  border: 4px solid $color-active;
+  background: $color-card;
+  border-radius: 10px;
+  clip-path: polygon(10% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 95%, 0% 6%);
+  position: relative;
+
+  background-image: url(/img/Photo.png);
+  background-repeat: no-repeat;
+  background-position: 50% 180%;
+
+  padding-left: 5rem;
+  padding-top: 2.5rem;
+  margin: 2rem;
+  text-align: left;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 12px;
+    width: 4px;
+    height: 41px;
+    background: $color-active;
+    transform-origin: center;
+    transform: rotate(48deg);
+  }
+
+  .card__top {
+    color: $color-text-secondary;
+    font-size: 1.6rem;
+  }
+
+  .card__top-selected {
+    display: none;
+  }
+
+  &__header {
+    font-size: 4.8rem;
+    line-height: 5.4rem;
+    margin: auto;
+  }
+
+  &__desc {
+    font-size: 2.4rem;
+    margin-bottom: 1rem;
+  }
+
+  &__quantity {
+    color: $color-text-secondary;
+    font-size: 1.4rem;
+    line-height: 1.3;
+  }
+
+  &__amount {
+    width: 8rem;
+    height: 8rem;
+    border-radius: 50%;
+    color: $color-white;
+    background-color: $color-active;
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    &-weight {
+      font-size: 4rem;
+      line-height: 2.5rem;
+      margin-top: 2rem;
+    }
+
+    &-kg {
+      font-size: 2rem;
+    }
+  }
+}
+
+.card-item__link {
+  color: $color-white;
+  font-size: 1.3rem;
+  text-align: center;
+
+  a {
+    color: $color-link;
+    text-decoration: none;
+    border-bottom: 1px dashed;
+  }
+}
+
+.card-item__link-selected {
+  display: none;
+}
+
+.card-item-selected {
+  .card {
+    border: 4px solid $color-clicked;
+
+    &::after {
+      background: $color-clicked;
+    }
+  }
+
+  .card__amount {
+    background-color: $color-clicked;
+  }
+
+  .card__top {
+    color: $color-text-secondary;
+    font-size: 1.6rem;
+  }
+
+  .card__top-selected {
+    display: none;
+  }
+
+  .card-item__link {
+    display: none;
+  }
+
+  .card-item__link-selected {
+    color: $color-white;
+    font-size: 1.3rem;
+    text-align: center;
+    height: 2.5rem;
+    display: block;
+  }
+}
+
+.hide {
+  &:hover > .card__top {
+    display: none;
+  }
+  &:hover > .card__top-selected {
+    display: block;
+    color: $color-clicked;
+    font-size: 1.6rem;
+  }
+}
+
+.card-item-disabled {
+  .card {
+    background-image: linear-gradient(rgba($color-card, 0.5), rgba($color-card, 0.5)), url(../img/Photo.png);
+    border: 4px solid $color-disabled;
+    pointer-events: none;
+    color: $color-disabled;
+
+    &::after {
+      background: $color-disabled;
+    }
+  }
+
+  .card__amount {
+    background-color: $color-disabled;
+  }
+
+  .card-item__link {
+    display: none;
+  }
+
+  .card-item__link-disabled {
+    color: $color-text-disabled;
+    font-size: 1.3rem;
+    text-align: center;
+    height: 2.5rem;
+    display: block;
+  }
+}
